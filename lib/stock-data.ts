@@ -1,7 +1,17 @@
-import { createClient } from "@/lib/supabase/server"
+import { mockStockData, getStockNames as getMockStockNames, getStockDataByName } from "./mock-data"
 import type { StockLog } from "./types"
 
+// Set to true to use mock data, false to use Supabase
+const USE_MOCK_DATA = true
+
 export async function getStockLogs(stockName?: string, limit = 100): Promise<StockLog[]> {
+  if (USE_MOCK_DATA) {
+    const data = getStockDataByName(stockName)
+    return data.slice(0, limit)
+  }
+
+  // Supabase implementation (for later)
+  const { createClient } = await import("@/lib/supabase/server")
   const supabase = await createClient()
   
   let query = supabase
@@ -25,6 +35,12 @@ export async function getStockLogs(stockName?: string, limit = 100): Promise<Sto
 }
 
 export async function getStockNames(): Promise<string[]> {
+  if (USE_MOCK_DATA) {
+    return getMockStockNames()
+  }
+
+  // Supabase implementation (for later)
+  const { createClient } = await import("@/lib/supabase/server")
   const supabase = await createClient()
   
   const { data, error } = await supabase
