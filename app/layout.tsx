@@ -5,8 +5,8 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
 export const metadata: Metadata = {
-  title: "Stock Analysis",
-  description: "Analyze stocks with powerful tools and insights",
+  title: "주식 분석 대시보드",
+  description: "실시간 주식 데이터 분석 및 차트 시각화",
 }
 
 export default function RootLayout({
@@ -15,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
+    <html lang="ko" className="dark">
+      <body className={`${inter.variable} font-sans antialiased min-h-screen bg-background`}>
         {children}
       </body>
     </html>
