@@ -1,6 +1,6 @@
 "use client"
 
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 import {
   Select,
   SelectContent,
@@ -16,16 +16,13 @@ interface StockSelectorProps {
 
 export function StockSelector({ stocks, currentStock }: StockSelectorProps) {
   const router = useRouter()
-  const searchParams = useSearchParams()
 
   const handleChange = (value: string) => {
-    const params = new URLSearchParams(searchParams.toString())
     if (value === "all") {
-      params.delete("stock")
+      router.push("/")
     } else {
-      params.set("stock", value)
+      router.push(`/?stock=${encodeURIComponent(value)}`)
     }
-    router.push(`/?${params.toString()}`)
   }
 
   return (

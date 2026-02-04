@@ -1,4 +1,3 @@
-import { Suspense } from "react"
 import { getStockLogs, getStockNames } from "@/lib/stock-data"
 import { Dashboard } from "@/components/dashboard"
 import { StockSelector } from "@/components/stock-selector"
@@ -37,9 +36,7 @@ export default async function Home({ searchParams }: PageProps) {
                 <Activity className="h-4 w-4 text-emerald-500 animate-pulse" />
                 <span>실시간</span>
               </div>
-              <Suspense fallback={<div className="w-[200px] h-10 bg-muted animate-pulse rounded-md" />}>
-                <StockSelector stocks={stockNames} currentStock={stockName} />
-              </Suspense>
+              <StockSelector stocks={stockNames} currentStock={stockName} />
             </div>
           </div>
         </div>
